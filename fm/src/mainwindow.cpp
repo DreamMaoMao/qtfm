@@ -121,6 +121,8 @@ MainWindow::MainWindow()
         font.setPointSize(settings->value("xFontSize").toInt());
     } else if (platform == "wayland") {
         font.setPointSize(settings->value("wFontSize").toInt());
+    } else {
+        font.setPointSize(settings->value("xFontSize").toInt()); // default is x11
     }
     qApp->setFont(font);
 

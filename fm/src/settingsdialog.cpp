@@ -206,7 +206,7 @@ QWidget *SettingsDialog::createAppearanceSettings()
 
 
     // Font size 
-    QGroupBox* grpFontSize = new QGroupBox(tr("Font size"), widget);
+    QGroupBox* grpFontSize = new QGroupBox(tr("Font size(need restart)"), widget);
     QFormLayout* layoutFontSize = new QFormLayout(grpFontSize);
     editWayland = new QLineEdit(grpFontSize);
     editXcb = new QLineEdit(grpFontSize);
