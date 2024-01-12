@@ -733,7 +733,7 @@ void SettingsDialog::readSettings() {
   mimeUtilsPtr->setDefaultsFileName(cmbDefaultMimeApps->currentText());
 
   // Load icon themes
-  QString currentTheme = settingsPtr->value("fallbackTheme").toString();
+  QString currentTheme = settingsPtr->value("fallbackTheme","Adwaita").toString();
   QStringList iconThemes;
   iconThemes << Common::getIconThemes(qApp->applicationFilePath());
   cmbIconTheme->addItems(iconThemes);
