@@ -35,7 +35,7 @@ SettingsDialog::SettingsDialog(QList<QAction *> *actionList,
   setWindowTitle(tr("Settings"));
   selector = new QListWidget(this);
   stack = new QStackedWidget(this);
-  selector->setMaximumWidth(150);
+  selector->setMaximumWidth(220);
   stack->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
   // Buttons
