@@ -204,11 +204,21 @@ QWidget *SettingsDialog::createAppearanceSettings()
     layoutAppear->addRow(tr("Show \"new tab\" button"), showNewTabButton);
     layoutAppear->addRow(tr("Show Terminal button"), showTerminalButton);
 
+
+    // Font size 
+    QGroupBox* grpFontSize = new QGroupBox(tr("Font size"), widget);
+    QFormLayout* layoutFontSize = new QFormLayout(grpFontSize);
+    editWayland = new QLineEdit(grpFontSize);
+    editXcb = new QLineEdit(grpFontSize);
+    layoutFontSize->addRow(tr("Wayland: "), editWayland);
+    layoutFontSize->addRow(tr("X11: "), editXcb);
+
     // Layout widget
     layoutWidget->addWidget(grpAppear);
     layoutWidget->addSpacerItem(new QSpacerItem(0, 0,
                                                 QSizePolicy::Fixed,
                                                 QSizePolicy::MinimumExpanding));
+    layoutWidget->addWidget(grpFontSize);
     return widget;
 }
 //---------------------------------------------------------------------------
@@ -680,6 +690,10 @@ void SettingsDialog::readSettings() {
 #else
   editTerm->setText(settingsPtr->value("term", "xterm").toString());
 #endif
+  
+  editWayland->setText(settingsPtr->value("wFontSize", "18").toString());
+  editXcb->setText(settingsPtr->value("xFontSize", "13").toString());  
+
   editCopyX->setText(settingsPtr->value("copyXof", COPY_X_OF).toString());
   editCopyTS->setText(settingsPtr->value("copyXofTS", COPY_X_TS).toString());
 
@@ -910,6 +924,8 @@ bool SettingsDialog::saveSettings() {
   // General settings
   settingsPtr->setValue("confirmDelete", checkDelete->isChecked());
   settingsPtr->setValue("term", editTerm->text());
+  settingsPtr->setValue("wFontSize", editWayland->text());
+  settingsPtr->setValue("xFontSize", editXcb->text());
   settingsPtr->setValue("copyXof", editCopyX->text());
   settingsPtr->setValue("copyXofTS", editCopyTS->text());
 

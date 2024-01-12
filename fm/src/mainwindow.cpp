@@ -114,6 +114,17 @@ MainWindow::MainWindow()
         qApp->setPalette(Common::darkTheme());
     }
 
+    // font size
+    QString platform = QGuiApplication::platformName();
+    QFont font;
+    if (platform == "xcb") {
+        font.setPointSize(settings->value("xFontSize").toInt());
+    } else if (platform == "wayland") {
+        font.setPointSize(settings->value("wFontSize").toInt());
+    }
+    qApp->setFont(font);
+
+
     // set icon theme
     Common::setupIconTheme(qApp->applicationFilePath());
 
